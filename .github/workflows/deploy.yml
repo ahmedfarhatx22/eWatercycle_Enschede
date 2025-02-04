@@ -29,12 +29,6 @@ jobs:
     - name: Build book
       run: jupyter-book build book/
 
-    - name: Ensure lec_slides is included
-      run: |
-        if [ -d "book/lec_slides" ]; then
-          cp -r book/lec_slides book/_build/html/lec_slides;
-        fi
-
     - name: Verify deployment files
       run: ls -R book/_build/html/
 
