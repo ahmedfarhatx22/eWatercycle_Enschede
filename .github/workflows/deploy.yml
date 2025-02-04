@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: write # Grant write access for deployment
 
 jobs:
   build-book:
