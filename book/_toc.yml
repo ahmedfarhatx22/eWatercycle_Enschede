@@ -93,20 +93,20 @@ chapters:    # (need to edit these according to plan)
 - file: Assignments/Flood modelling.ipynb
 - file: Assignments/Water balance analysis.ipynb
 
-- file: PySemmusScope(170 Fluxnet sites)/Contributing guide.ipynb
-- file: PySemmusScope(170 Fluxnet sites)/Getting started.ipynb
-- file: PySemmusScope(170 Fluxnet sites)/Introduction.ipynb
-- file: PySemmusScope(170 Fluxnet sites)/Running the model.i.ipynb
+# - file: PySemmusScope(170 Fluxnet sites)/Contributing guide.ipynb
+# - file: PySemmusScope(170 Fluxnet sites)/Getting started.ipynb
+# - file: PySemmusScope(170 Fluxnet sites)/Introduction.ipynb
+# - file: PySemmusScope(170 Fluxnet sites)/Running the model.ipynb
 
-- file: Stemmus_Scope (Soil-Plant Model)/Basic Model Interface.ipynb 
-- file: Stemmus_Scope (Soil-Plant Model)/Contributing guide.ipynb 
-- file: Stemmus_Scope (Soil-Plant Model)/Running the STEMMUS_SCOPE model on a system.ipynb 
-- file: Stemmus_Scope (Soil-Plant Model)/Running the STEMMUS_SCOPE with different datasets.ipynb
+# - file: Stemmus_Scope (Soil-Plant Model)/Basic Model Interface.ipynb 
+# - file: Stemmus_Scope (Soil-Plant Model)/Contributing guide.ipynb 
+# - file: Stemmus_Scope (Soil-Plant Model)/Running the STEMMUS_SCOPE model on a system.ipynb 
+# - file: Stemmus_Scope (Soil-Plant Model)/Running the STEMMUS_SCOPE with different datasets.ipynb
 
-- file: Zampy(location on Earth) 
-- file: Zampy(location on Earth)/Available datasets.ipynb
-- file: Zampy(location on Earth)/Available recipes.ipynb 
-- file: Zampy(location on Earth)/Configuration.ipynb 
-- file: Zampy(location on Earth)/Contributing guide.ipynb 
-- file: Zampy(location on Earth)/For developers.ipynb 
-- file: Zampy(location on Earth)/Getting started.ipynb
+# - file: Zampy(location on Earth) 
+# - file: Zampy(location on Earth)/Available datasets.ipynb
+# - file: Zampy(location on Earth)/Available recipes.ipynb 
+# - file: Zampy(location on Earth)/Configuration.ipynb 
+# - file: Zampy(location on Earth)/Contributing guide.ipynb 
+# - file: Zampy(location on Earth)/For developers.ipynb 
+# - file: Zampy(location on Earth)/Getting started.ipynb
