@@ -21,6 +21,10 @@ sphinx:
     bracket_citation_style: _ext/
   extra_extensions:
     - sphinx_exercise
+    - sphinxcontrib.bibtex
+    - sphinx.ext.mathjax
+    - sphinx.ext.imgmath
+
   config:
     bibtex_reference_style: author_year_round
     bibtex_default_style: myapastyle

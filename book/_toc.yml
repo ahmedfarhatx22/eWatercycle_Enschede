@@ -96,5 +96,7 @@ chapters:    # (need to edit these according to plan)
     - file: "Zampy/For developers.ipynb"
     - file: "Zampy/Contributing guide.ipynb"
 
+- file: "bibliography.ipynb"
+
 
 
