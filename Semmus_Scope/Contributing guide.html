@@ -327,7 +327,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -343,6 +345,25 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contributing-via-github">1.4.1. Contributing via GitHub</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-changes-to-the-model-source-code">1.4.2. Adding changes to the model source code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reviewing-a-pull-request">1.4.3. Reviewing a pull request</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merging-a-pull-request">1.4.4. Merging a pull request</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-an-executable-file-of-stemmus-scope">1.4.5. Creating an executable file of STEMMUS_SCOPE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#miss-hit-checks">1.4.6. MISS_HIT Checks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-new-changes">1.4.7. Testing new changes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-the-documentation-locally">1.4.8. Building the documentation locally</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#making-a-release">1.4.9. Making a release</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#github-actions-workflow">1.4.10. GitHub actions workflow</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-image">1.4.11. Docker image</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#octave-compatibility">1.4.12. Octave compatibility</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -354,6 +375,159 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="contributing-guide">
 <h1><span class="section-number">1.4. </span>Contributing guide<a class="headerlink" href="#contributing-guide" title="Permalink to this heading">#</a></h1>
+<blockquote>
+<div><p><strong>NOTE:</strong> The instructions below are meant for users who want to add changes to the model source code. If you want to run the model, see the documentation on “<a class="reference internal" href="Running%20the%20model.html#running-model"><span class="std std-ref">Running the model</span></a>”.</p>
+</div></blockquote>
+<p>This repository includes the MATLAB source code of the STEMMUS-SCOPE model. We welcome any kind of contributions to our software, from simple comments or questions to a full <a class="reference external" href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests">pull request</a>. Please read and follow our contributing guidelines.</p>
+<section id="contributing-via-github">
+<h2><span class="section-number">1.4.1. </span>Contributing via GitHub<a class="headerlink" href="#contributing-via-github" title="Permalink to this heading">#</a></h2>
+<p>If you want to work with the <code class="docutils literal notranslate"><span class="pre">STEMMUS_SCOPE</span></code> repository for the first time, or on a new computer, you need to configure a few things following steps 1 through 5 below.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Steps 1 to 5</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Config file: it is a text file that sets the paths <strong>required</strong> by the model. For example, see <a class="reference external" href="https://github.com/EcoExtreML/STEMMUS_SCOPE/blob/main/config_file_crib.txt">config_file_crib.txt</a></p>
+<h3 class="rubric" id="enable-two-factor-authentication-it-is-strongly-recommended-using-two-factor-authentication-here-is-the-link-of-configuring-two-factor-authentication-2-set-ssh-connection-with-ssh-keys-you-can-connect-to-github-without-supplying-your-username-and-personal-access-token-at-each-visit-please-follow-the-instructions-below-if-you-like-to-know-more-see-connecting-to-github-with-ssh-2-1-checking-for-existing-ssh-keys-open-a-terminal-and-run-the-command-below">1. Enable two-factor authentication It is strongly recommended using two-factor authentication. Here is the link of <a class="reference external" href="https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/configuring-two-factor-authentication">Configuring two-factor authentication</a>. ### 2. Set ssh connection With SSH keys, you can connect to GitHub without supplying your username and personal access token at each visit. Please follow the instructions below. If you like to know more, see <a class="reference external" href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh">Connecting to GitHub with SSH</a> #### 2.1. Checking for existing SSH keys Open a terminal and run the command below:</h3>
+<p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-la</span> <span class="pre">~/.ssh</span></code></p>
+<p class="sd-card-text">This command lists the files with extension <code class="docutils literal notranslate"><span class="pre">.pub</span></code> like <code class="docutils literal notranslate"><span class="pre">id_rsa.pub</span></code> in the <code class="docutils literal notranslate"><span class="pre">.ssh</span></code> directory, if they exist. If you receive an error that <code class="docutils literal notranslate"><span class="pre">~/.ssh</span></code> doesn’t exist, or you don’t see any files with extension <code class="docutils literal notranslate"><span class="pre">.pub</span></code>, you do not have an existing SSH key pair. So, continue with step <strong>2.2</strong>. Otherwise, skip step 2.2 and continue with step <strong>2.3</strong>. #### 2.2. Generating a new SSH key Open a terminal and run the command below but replace <code class="docutils literal notranslate"><span class="pre">your_user_email</span></code> with your own GitHub email address:</p>
+<p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">ssh-keygen</span> <span class="pre">-t</span> <span class="pre">ed25519</span> <span class="pre">-C</span> <span class="pre">&quot;your_user_email&quot;</span></code></p>
+<p class="sd-card-text">When you’re prompted to “Enter a file in which to save the key,” press <code class="docutils literal notranslate"><span class="pre">Enter</span></code>. This accepts the default file location. The next prompt asks “Enter passphrase (empty for no passphrase)”, type a secure passphrase. For more information, see <a class="reference external" href="https://docs.github.com/en/articles/working-with-ssh-key-passphrases">Working with SSH key passphrases</a>. #### 2.3. Adding your SSH key to the ssh-agent Open a terminal and run the command below:</p>
+<p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">eval</span> <span class="pre">&quot;$(ssh-agent</span> <span class="pre">-s)&quot;</span></code></p>
+<p class="sd-card-text">Then, run the command below:</p>
+<p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">ssh-add</span> <span class="pre">~/.ssh/id_ed25519</span></code></p>
+<p class="sd-card-text">This asks for your “passphrase” that was provided in the previous step. #### 2.4. Adding a new SSH key to your GitHub account Please follow steps 1 to 8 in this <a class="reference external" href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account">GitHub instruction</a>. ### 3. Configure git #### 3.1. Set name and email Open a terminal, and run the commands below one by one but replace <code class="docutils literal notranslate"><span class="pre">your_user_name</span></code> and <code class="docutils literal notranslate"><span class="pre">your_user_email</span></code> with your own GitHub information:</p>
+<p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">config</span> <span class="pre">--global</span> <span class="pre">user.name</span> <span class="pre">&quot;your_user_name&quot;</span> <span class="pre">git</span> <span class="pre">config</span> <span class="pre">--global</span> <span class="pre">user.email</span> <span class="pre">&quot;your_user_email&quot;</span></code></p>
+<h4 class="rubric" id="set-line-endings-change-the-way-git-encodes-line-endings-on-linux-as">3.2. Set line endings Change the way Git encodes line endings on Linux as:</h4>
+<p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">config</span> <span class="pre">--global</span> <span class="pre">core.autocrlf</span> <span class="pre">input</span></code></p>
+<h4 class="rubric" id="set-text-editor-we-can-set-nano-as-our-favorite-text-editor-following">3.3. Set text editor We can set <code class="docutils literal notranslate"><span class="pre">nano</span></code> as our favorite text editor, following:</h4>
+<p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">config</span> <span class="pre">--global</span> <span class="pre">core.editor</span> <span class="pre">&quot;nano</span> <span class="pre">-w&quot;</span></code></p>
+<blockquote>
+<div><p class="sd-card-text">We use <code class="docutils literal notranslate"><span class="pre">nano</span></code> here because it is one of the least complex text editors. Press &gt; <code class="docutils literal notranslate"><span class="pre">ctrl</span> <span class="pre">+</span> <span class="pre">O</span></code> to save the file, and then <code class="docutils literal notranslate"><span class="pre">ctrl</span> <span class="pre">+</span> <span class="pre">X</span></code> to exit <code class="docutils literal notranslate"><span class="pre">nano</span></code>. #### 3.4. Check your settings You can check your settings at any time:</p>
+</div></blockquote>
+<p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">config</span> <span class="pre">--list</span></code></p>
+<p class="sd-card-text">For more information, see lesson <a class="reference external" href="https://swcarpentry.github.io/git-novice/02-setup/index.html">Setting Up Git</a>. ### 4. Clone the repository Open a terminal and run the command below:</p>
+<p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">cd</span></code></p>
+<p class="sd-card-text">Now you are in your <code class="docutils literal notranslate"><span class="pre">HOME</span></code> directory. Run the command below:</p>
+<p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">git&#64;github.com:EcoExtreML/STEMMUS_SCOPE.git</span></code></p>
+<p class="sd-card-text">Now a new GitHub folder <code class="docutils literal notranslate"><span class="pre">STEMMUS_SCOPE</span></code> is created in your <code class="docutils literal notranslate"><span class="pre">HOME</span></code> directory. &gt; In this command, we clone the repository using <code class="docutils literal notranslate"><span class="pre">ssh</span></code> option. As we set the ssh connection in <a class="reference internal" href="#2-set-ssh-connection"><span class="xref myst"><strong>Step 2</strong></span></a>, this command here does not ask for our user name and password. ### 5. Collaborate using GitHub To know about the most common Git commands, follow the guides <a class="reference external" href="https://hackmd.io/B4v6KwsBRzG-akLDF8e5pg">here</a>.</p>
+</div>
+</details></section>
+<section id="adding-changes-to-the-model-source-code">
+<h2><span class="section-number">1.4.2. </span>Adding changes to the model source code<a class="headerlink" href="#adding-changes-to-the-model-source-code" title="Permalink to this heading">#</a></h2>
+<p>To setup the required software and configurations, see the documentation on “”<a class="reference internal" href="Getting%20started.html#getting-started"><span class="std std-ref">Getting started</span></a>””.</p>
+<p>It would be ideal to introduce changes incrementally over time. This way, you can track the changes and understand the impact of each change. Here are the steps to follow:</p>
+<ul class="simple">
+<li><p>Submit <a class="reference external" href="https://github.com/EcoExtreML/STEMMUS_SCOPE/issues">an issue</a> to the repository. This issue should describe the problem or the feature you want to introduce.</p></li>
+<li><p>Create a new branch from the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch. This branch should have a descriptive name that relates to the issue you are working on.</p></li>
+<li><p>Make the changes in the new branch, for example, you can add new features, fix bugs, or improve the documentation. Follow <a class="reference external" href="http://cnl.sogang.ac.kr/cnlab/lectures/programming/matlab/Richard_Johnson-MatlabStyle2_book.pdf">MATLAB Guidelines 2.0</a>, <a class="reference external" href="http://cnl.sogang.ac.kr/cnlab/lectures/programming/matlab/Richard_Johnson-MatlabStyle2_book.pdf">Richard Johnson</a> when introducing new changes to the codes.</p></li>
+<li><p>Commit the changes to the new branch. Write a descriptive commit message that explains the changes you are introducing.</p></li>
+<li><p>Push the changes to the repository.</p></li>
+<li><p>Create a <strong>draft</strong> <a class="reference external" href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests">pull request</a> to the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch. This pull request should reference the issue you are working on.</p></li>
+<li><p>When you are done with the changes, run <a class="reference internal" href="#testing1"><span class="std std-ref">the tests</span></a> and <a class="reference internal" href="#miss-hit-checks"><span class="std std-ref">MISS_HIT commands</span></a>, make sure they pass.</p></li>
+<li><p>Make the pull request ready for review. Ask for a review from the repository maintainers.</p></li>
+<li><p>The maintainers will review the changes and provide feedback. You may need to make additional changes based on the feedback.</p></li>
+<li><p>When the changes are approved, the maintainers will merge the pull request.</p></li>
+</ul>
+</section>
+<section id="reviewing-a-pull-request">
+<h2><span class="section-number">1.4.3. </span>Reviewing a pull request<a class="headerlink" href="#reviewing-a-pull-request" title="Permalink to this heading">#</a></h2>
+<p>When you are reviewing a pull request, you should follow the steps below:</p>
+<ul class="simple">
+<li><p>Check the changes introduced in the pull request. Make sure the changes are consistent with the issue description. Also, check for example variable names, function names, documentation, global variables, …, to see if the changes are consistent with the <a class="reference external" href="https://github.com/EcoExtreML/STEMMUS_SCOPE/issues">MATLAB Style Guidelines 2.0</a>.</p></li>
+<li><p>run <a class="reference internal" href="#testing1"><span class="std std-ref">the tests</span></a> and <a class="reference internal" href="#miss-hit-checks"><span class="std std-ref">MISS_HIT commands</span></a>, make sure they pass.</p></li>
+<li><p>Provide feedback on the changes. You can ask questions, suggest improvements, or point out issues.</p></li>
+<li><p>When you are satisfied with the changes, approve the pull request. Ask a maintainer to <a class="reference internal" href="#ex-file-gen"><span class="std std-ref">re-generate the executable file</span></a> and merge the pull request.</p></li>
+<li><p>If the changes are related to BMI, you have to ask the maintainer to make a new release of the model. This way a new docker image will be created and the model will be available for the users.</p></li>
+<li><p>If the changes are related to the documentation, make sure that documentation page can be built successfully, see <a class="reference internal" href="#build-local"><span class="std std-ref">Building the documentation locally</span></a>.</p></li>
+</ul>
+</section>
+<section id="merging-a-pull-request">
+<h2><span class="section-number">1.4.4. </span>Merging a pull request<a class="headerlink" href="#merging-a-pull-request" title="Permalink to this heading">#</a></h2>
+<p>When you are merging a pull request, you should follow the steps below:</p>
+<ul class="simple">
+<li><p>Make sure the pull request is approved by at least one reviewer.</p></li>
+<li><p>Make sure all the items in the pull request’s list are checked.</p></li>
+</ul>
+</section>
+<section id="creating-an-executable-file-of-stemmus-scope">
+<span id="ex-file-gen"></span><h2><span class="section-number">1.4.5. </span>Creating an executable file of STEMMUS_SCOPE<a class="headerlink" href="#creating-an-executable-file-of-stemmus-scope" title="Permalink to this heading">#</a></h2>
+<p>See the disumentation on <a class="reference external" href="https://github.com/EcoExtreML/STEMMUS_SCOPE/tree/main/run_model_on_snellius/exe">executable file</a>.</p>
+</section>
+<section id="miss-hit-checks">
+<span id="id1"></span><h2><span class="section-number">1.4.6. </span>MISS_HIT Checks<a class="headerlink" href="#miss-hit-checks" title="Permalink to this heading">#</a></h2>
+<p>When you submit a pull request, the code is also <a class="reference external" href="https://github.com/EcoExtreML/STEMMUS_SCOPE/actions/workflows/lint.yml">checked</a> by the <a class="reference external" href="https://misshit.org/">MISS_HIT</a> linter and style checker. The status of <code class="docutils literal notranslate"><span class="pre">MISS_HIT</span></code> checks is shown below the pull request. The checks should be successful (green) before merging the pull request. To work with <code class="docutils literal notranslate"><span class="pre">MISS_HIT</span></code>, follow the instructions below:</p>
+<ul class="simple">
+<li><p>Installing MISS_HIT: To install MISS_HIT, follow their <a class="reference external" href="https://github.com/florianschanda/miss_hit#installation-via-pip">installation instructions</a>.</p></li>
+<li><p>Running MISS_HIT: To run the style checker or linter, navigate to the <code class="docutils literal notranslate"><span class="pre">src/</span></code> folder in STEMMUS_SCOPE, and run the following commands:</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">mh_style</span> <span class="pre">mh_lint</span> <span class="pre">mh_metric</span></code></p>
+<p>Follow the errors and information in the output to fix any issues.</p>
+<ul class="simple">
+<li><p>Configuring MISS_HIT: <code class="docutils literal notranslate"><span class="pre">MISS_HIT</span></code> is configured in <code class="docutils literal notranslate"><span class="pre">[miss_hit.cfg](https://github.com/EcoExtreML/STEMMUS_SCOPE/blob/main/miss_hit.cfg)</span></code>. This file contains the configuration for the linter and style checker. Please do not change this file unless you are familiar with the configuration options.</p></li>
+</ul>
+</section>
+<section id="testing-new-changes">
+<span id="testing1"></span><h2><span class="section-number">1.4.7. </span>Testing new changes<a class="headerlink" href="#testing-new-changes" title="Permalink to this heading">#</a></h2>
+<p>To test the new changes, we can only check if the new changes do not break the model. To do this, follow the steps below:</p>
+<ul class="simple">
+<li><p>Run the notebook <code class="docutils literal notranslate"><span class="pre">compare_git_branch_results.ipynb</span></code> in the <code class="docutils literal notranslate"><span class="pre">test</span></code> folder. This notebook will compare the results of the model between the main branch and the new branch with the changes. If the results are similar, the changes do not break the model.</p></li>
+<li><p><a class="reference internal" href="#ex-file-gen"><span class="std std-ref">Create the executable file</span></a> of the model and run the model with the new changes. Check if the model runs without any errors.</p></li>
+<li><p><a class="reference internal" href="#octave"><span class="std std-ref">Run the model with Octave</span></a> to check if the new changes are compatible with Octave.</p></li>
+</ul>
+</section>
+<section id="building-the-documentation-locally">
+<span id="build-local"></span><h2><span class="section-number">1.4.8. </span>Building the documentation locally<a class="headerlink" href="#building-the-documentation-locally" title="Permalink to this heading">#</a></h2>
+<p>Documentation is created using several markdown files and the <code class="docutils literal notranslate"><span class="pre">[mkdocs</span> <span class="pre">tool](https://www.mkdocs.org/)</span></code>. The markdown files are located in the docs folder. The configuration file for <code class="docutils literal notranslate"><span class="pre">mkdocs</span></code> is <code class="docutils literal notranslate"><span class="pre">mkdocs.yml</span></code> located in the root directory. To build the documentation locally, follow the steps below:</p>
+<ul class="simple">
+<li><p>Install the required dependencies as:</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">STEMMUS_SCOPE</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">docs/requirements.txt</span></code></p>
+<ul class="simple">
+<li><p>Build the documentation as:</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">mkdocs</span> <span class="pre">build</span></code></p>
+<ul class="simple">
+<li><p>Preview the documentation as:</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">mkdocs</span> <span class="pre">serve</span></code></p>
+<p>Click on the link provided in the terminal to view the documentation in your browser.</p>
+</section>
+<section id="making-a-release">
+<h2><span class="section-number">1.4.9. </span>Making a release<a class="headerlink" href="#making-a-release" title="Permalink to this heading">#</a></h2>
+<p>When you are ready to make a release of the model, follow the steps below:</p>
+<ul class="simple">
+<li><p>Make sure all new changes are added to changes log in the file “<a class="reference external" href="https://github.com/EcoExtreML/STEMMUS_SCOPE/blob/main/CHANGELOG.md">CHANGELOG.md</a>”.</p></li>
+<li><p>Create a new release in the repository. The release should have a version number following the <a class="reference external" href="https://semver.org/">semantic versioning</a> guidelines.</p></li>
+<li><p>Add a description of the changes in the release notes.</p></li>
+</ul>
+</section>
+<section id="github-actions-workflow">
+<h2><span class="section-number">1.4.10. </span>GitHub actions workflow<a class="headerlink" href="#github-actions-workflow" title="Permalink to this heading">#</a></h2>
+<p><a class="reference external" href="https://docs.github.com/en/actions/about-github-actions/understanding-github-actions">GitHub actions</a> workflows are located in the folder <code class="docutils literal notranslate"><span class="pre">.github/workflows</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">lint.yml</span></code>: This workflow checks the code style and lints the code using <code class="docutils literal notranslate"><span class="pre">MISS_HIT</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">doc_deploy.yml</span></code>: This workflow builds the documentation and deploys it to GitHub pages. It will create a gh-pages branch in the repository.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">publish-container</span></code>: This workflow builds the docker image and publishes it to the repository once a new release is made. The docker image will avialable in the <a class="reference external" href="https://github.com/EcoExtreML/STEMMUS_SCOPE/pkgs/container/stemmus_scope">packages</a> in the repository.</p></li>
+</ul>
+</section>
+<section id="docker-image">
+<h2><span class="section-number">1.4.11. </span>Docker image<a class="headerlink" href="#docker-image" title="Permalink to this heading">#</a></h2>
+<p>The <a class="reference external" href="https://github.com/EcoExtreML/STEMMUS_SCOPE/blob/main/Dockerfile">Dockerfile</a> is located in the root directory. This file is used to build the docker image of the model by Github action <code class="docutils literal notranslate"><span class="pre">publish-container</span></code>, see GitHub actions workflow. To build and run the docker image locally, follow the steps below:</p>
+<ul class="simple">
+<li><p>Install <a class="reference external" href="https://www.docker.com/">Docker</a>.</p></li>
+<li><p>Build the docker image <strong>locally</strong> as:</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">STEMMUS_SCOPE</span> <span class="pre">docker</span> <span class="pre">build</span> <span class="pre">-t</span> <span class="pre">stemmus_scope</span> <span class="pre">.</span></code></p>
+<ul class="simple">
+<li><p>Run the docker image with the BMI interface as:</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span> <span class="pre">-u</span> <span class="pre">$(id</span> <span class="pre">-u):$(id</span> <span class="pre">-g)</span> <span class="pre">-v</span> <span class="pre">/path_to_input_folder:/path_to_input_folder</span> <span class="pre">-v</span> <span class="pre">/path_to_output_folder:/path_to_output_folder</span> <span class="pre">-it</span> <span class="pre">stemmus_scope</span></code></p>
+<p>With <code class="docutils literal notranslate"><span class="pre">-it</span></code> option, you can enter the docker interactive mode. Now, BMI asks you to select one of the steps “initialize”, “update” or “finalize”. To initialize the model using a config file, type:</p>
+<p><code class="docutils literal notranslate"><span class="pre">initialize</span> <span class="pre">&quot;path/to/config_file_template.txt&quot;</span></code></p>
+</section>
+<section id="octave-compatibility">
+<span id="octave"></span><h2><span class="section-number">1.4.12. </span>Octave compatibility<a class="headerlink" href="#octave-compatibility" title="Permalink to this heading">#</a></h2>
+<p>See the documentation on <a class="reference external" href="https://ecoextreml.github.io/STEMMUS_SCOPE/Octave_instructions/">Octave</a>.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -410,6 +584,32 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contributing-via-github">1.4.1. Contributing via GitHub</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-changes-to-the-model-source-code">1.4.2. Adding changes to the model source code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reviewing-a-pull-request">1.4.3. Reviewing a pull request</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merging-a-pull-request">1.4.4. Merging a pull request</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-an-executable-file-of-stemmus-scope">1.4.5. Creating an executable file of STEMMUS_SCOPE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#miss-hit-checks">1.4.6. MISS_HIT Checks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-new-changes">1.4.7. Testing new changes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-the-documentation-locally">1.4.8. Building the documentation locally</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#making-a-release">1.4.9. Making a release</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#github-actions-workflow">1.4.10. GitHub actions workflow</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-image">1.4.11. Docker image</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#octave-compatibility">1.4.12. Octave compatibility</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
