@@ -327,7 +327,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -343,6 +345,18 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-rescources">1.2.1. Computing rescources</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#software">1.2.2. Software</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-source-code">1.2.3. Model source code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data">1.2.4. Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuration-file">1.2.5. Configuration file</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -354,6 +368,125 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="getting-started">
 <h1><span class="section-number">1.2. </span>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this heading">#</a></h1>
+<p><span style="font-size: 32px; font-weight: bold;"> <strong>Requirements:</strong></span></p>
+<section id="computing-rescources">
+<h2><span class="section-number">1.2.1. </span>Computing rescources<a class="headerlink" href="#computing-rescources" title="Permalink to this heading">#</a></h2>
+<p>To run the STEMMUS-SCOPE model, you can use one of the following computing resources:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.itc.nl/about-itc/centres-of-expertise/big-geodata/">CRIB</a> is the ITC Geospatial Computing Platform.</p></li>
+<li><p><a class="reference external" href="https://servicedesk.surfsara.nl/wiki/display/WIKI/Snellius">Snellius</a> is the Dutch National supercomputer hosted at SURF.</p></li>
+</ul>
+<p>Otherwise, you can run the model on your local device if you have the correct set of software and data.</p>
+</section>
+<section id="software">
+<h2><span class="section-number">1.2.2. </span>Software<a class="headerlink" href="#software" title="Permalink to this heading">#</a></h2>
+<p>To run the STEMMUS-SCOPE model, you need one of the following:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://nl.mathworks.com/products/matlab.html">MATLAB</a></p></li>
+<li><p><a class="reference external" href="https://nl.mathworks.com/products/compiler/matlab-runtime.html">MATLAB Runtime</a>on a Unix-like system</p></li>
+<li><p><a class="reference external" href="https://octave.org/">Octave</a></p></li>
+<li><p><a class="reference external" href="https://www.docker.com/">Docker</a></p></li>
+</ul>
+</section>
+<section id="model-source-code">
+<h2><span class="section-number">1.2.3. </span>Model source code<a class="headerlink" href="#model-source-code" title="Permalink to this heading">#</a></h2>
+<p>The source code of STEMMUS_SCOPE can be found in the GitHub repository <a class="github reference external" href="https://github.com/EcoExtreML/STEMMUS_SCOPE">EcoExtreML/STEMMUS_SCOPE</a> under the folder src. Download the latest version of the model from the repository or get it using git clone in a terminal:</p>
+<p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/EcoExtreML/STEMMUS_SCOPE.git</span></code></p>
+</section>
+<section id="data">
+<h2><span class="section-number">1.2.4. </span>Data<a class="headerlink" href="#data" title="Permalink to this heading">#</a></h2>
+<p>To run the STEMMUS-SCOPE model, you need to have input data either from in-situ measurements or from remote sensing. Before running the model, you need to prepare input data and a configuration file for <strong>one site/location</strong>. This can be done using <a class="reference external" href="https://pystemmusscope.readthedocs.io/en/latest/reference/#PyStemmusScope.stemmus_scope.StemmusScope.setup">setup()</a> function in the python package <a class="reference external" href="https://pystemmusscope.readthedocs.io/en/latest/">PyStemmusScope</a>. See example datasets below:</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Example dataset on Zenodo</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">A pre-processed example dataset for one site can be found on Zenodo <a class="reference external" href="https://zenodo.org/records/10566827">here</a>.</p>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Data on CRIB</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text"><a class="reference external" href="https://www.itc.nl/about-itc/centres-of-expertise/big-geodata/">CRIB</a> is the ITC Geospatial Computing Platform.</p>
+<p class="sd-card-text">To run the STEMMUS-SCOPE model, you need to have input data either from in-situ measurements or from remote sensing. Plumber2 site data are avialable under project directory on CRIB. This folder includes:</p>
+<ul class="simple">
+<li><p class="sd-card-text">Plumber2_data: the forcing/driving data provided by PLUMBER2.</p></li>
+<li><p class="sd-card-text">SoilProperty: the soil texture data and soil hydraulic parameters.</p></li>
+</ul>
+<p class="sd-card-text">In addition to site data, the remote sensing data are available on CRIB in <code class="docutils literal notranslate"><span class="pre">global_data</span></code> folder.</p>
+<p class="sd-card-text">Data required by the model are in a folder named “input”. Below the directory explanations are from <a class="reference external" href="https://scope-model.readthedocs.io/en/latest/directories.html">SCOPE documentation</a>:</p>
+<ul class="simple">
+<li><p class="sd-card-text">directional: the observer’s zenith and azimuth angles.(only used for multi-angle simulations (if the option ‘directional’ is switched on in parameters).</p></li>
+<li><p class="sd-card-text">fluspect_parameters: absorption spectra of different leaf components are provided, according to PROSPECT 3.1, as well as Fluspect input: standard spectra for PSI and PSII.</p></li>
+<li><p class="sd-card-text">leafangles: example leaf inclination distribution data are provided.</p></li>
+<li><p class="sd-card-text">radiationdata: RTMo.m calculates spectra based on MODTRAN5 outputs (T-18 system).Note that in the input data (files as well as the spreadsheet), the broadband input radiation may be provided. SCOPE linearly scales the input spectra of the optical and the thermal domain in such a way that the spectrally integrated input shortwave and long-wave radiation matches with the measured values.</p></li>
+<li><p class="sd-card-text">soil_spectra: the soil spectrum is provided. Note that it is also possible to simulate a soil reflectance spectrum with the BSM model. In that case, the values for the BSM model parameters are taken from the input data, and the archived spectra in this folder are not used.</p></li>
+<li><p class="sd-card-text">input_data.xlsx: the input to SCOPE model is provided. It provides parameter inputs for PROSPECT, leaf_biochemical, fluorescence, soil, canopy, aerodynamic, angles, photosynthetic temperature dependence functional parameters, etc.</p></li>
+<li><p class="sd-card-text">input_soilLayThick.csv (optional): A file to change the discretization of the soil layers of the STEMMUS model. An example of this file is in example_data folder. This file (if needed) should be copied into the InputPath folder. If this file is used, it will override the default settings of the soil layers. The file has three columns: 1) layer number, 2) layer thickness, and 3) maximum root depth. The user is free to change the values of the three columns. Also, the number of rows determines the number of the soil layers and the total thickness of the soil column (sum of soil layer thickness).</p></li>
+</ul>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Data on Snellius</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text"><a class="reference external" href="https://servicedesk.surfsara.nl/wiki/display/WIKI/Snellius">Snellius</a> is the Dutch National supercomputer hosted at SURF.</p>
+<p class="sd-card-text">To run the STEMMUS-SCOPE model, you need to have input data either from in-situ measurements or from remote sensing. Data required by the model are in a folder named “data” in the project directory <code class="docutils literal notranslate"><span class="pre">einf2480</span></code> on Snellius. This directory includes:</p>
+<ul class="simple">
+<li><p class="sd-card-text">forcing/plumber2_data: the forcing/driving data provided by PLUMBER2.</p></li>
+<li><p class="sd-card-text">model_parameters/soil_property: the soil texture data and soil hydraulic parameters.</p></li>
+<li><p class="sd-card-text">model_parameters/vegetation_property:</p></li>
+<li><p class="sd-card-text">directional</p></li>
+<li><p class="sd-card-text">fluspect_parameters</p></li>
+<li><p class="sd-card-text">leafangles</p></li>
+<li><p class="sd-card-text">radiationdata</p></li>
+<li><p class="sd-card-text">soil_spectra</p></li>
+<li><p class="sd-card-text">input_data.xlsx</p></li>
+<li><p class="sd-card-text">input_soilThick.csv (optional)</p></li>
+<li><p class="sd-card-text">In addition to site data, the remote sensing data are available on Snellius in <code class="docutils literal notranslate"><span class="pre">global_data</span></code> folder.</p></li>
+</ul>
+</div>
+</details></section>
+<section id="configuration-file">
+<h2><span class="section-number">1.2.5. </span>Configuration file<a class="headerlink" href="#configuration-file" title="Permalink to this heading">#</a></h2>
+<p>The configuration file is a text file that sets the paths required by the model. The configuration file should contain the following information:</p>
+<p><code class="docutils literal notranslate"><span class="pre">WorkDir=/path_to_working_directory/</span> <span class="pre">SoilPropertyPath=/path_to_soil_property_data/</span> <span class="pre">ForcingPath=/path_to_forcing_data/</span> <span class="pre">Location=AU-DaS</span> <span class="pre">directional=/path_to_directional_data/</span> <span class="pre">fluspect_parameters=/path_to_fluspect_parameters_data/</span> <span class="pre">leafangles=/path_to_leafangles_data/</span> <span class="pre">radiationdata=/path_to_radiation_data/</span> <span class="pre">soil_spectrum=/path_to_soil_spectra_data/</span> <span class="pre">InitialConditionPath=/path_to_soil_initial_condition_data/</span> <span class="pre">input_data=/path_to_input_data.xlsx_file/</span> <span class="pre">StartTime=2001-01-01T00:00</span> <span class="pre">EndTime=2001-01-02T00:00</span> <span class="pre">InputPath=/path_to_model_input_folder/</span> <span class="pre">OutputPath=/path_to_model_output_folder/</span></code></p>
+<p>The configuration file could also contain the optional key <code class="docutils literal notranslate"><span class="pre">FullCSVfiles</span></code>. If <code class="docutils literal notranslate"><span class="pre">FullCSVfiles=0</span></code>, the model will <strong>not</strong> store some <strong>large</strong> binary files in csv format. The default value is <code class="docutils literal notranslate"><span class="pre">FullCSVfiles=1</span></code>. To know which files are stored in csv format, see the function <code class="docutils literal notranslate"><span class="pre">bin_to_csv()</span></code> in <code class="docutils literal notranslate"><span class="pre">src/+io</span></code> folder.</p>
+<p><code class="docutils literal notranslate"><span class="pre">FullCSVfiles=0</span></code></p>
+<p>See example configuration files below:</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Example configuration file</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">An example configuration file can be found <a class="reference external" href="https://github.com/EcoExtreML/STEMMUS_SCOPE/blob/main/config_file_template.txt">here</a>. If <a class="reference external" href="https://pystemmusscope.readthedocs.io/en/latest/reference/#PyStemmusScope.stemmus_scope.StemmusScope.setup">setup()</a> function in the python package <a class="reference external" href="https://pystemmusscope.readthedocs.io/en/latest/">PyStemmusScope</a> is used to prepare data, the model configuration file including <code class="docutils literal notranslate"><span class="pre">InputPath</span></code> and <code class="docutils literal notranslate"><span class="pre">OutputPath</span></code> and the data of <strong>one site/location</strong> will be generated automatically.</p>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Example configuration file on CRIB</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Config file: it is a text file that sets the paths <strong>required</strong> by the model. For example, see <a class="reference external" href="https://github.com/EcoExtreML/STEMMUS_SCOPE/blob/main/config_file_crib.txt">config_file_crib.txt</a> or <a class="reference external" href="https://pystemmusscope.readthedocs.io/en/latest/">config_file_crib_global.txt</a> in this repository. This file includes:</p>
+<ul class="simple">
+<li><p class="sd-card-text">SoilPropertyPath: a path to soil texture data and soil hydraulic parameters.</p></li>
+<li><p class="sd-card-text">InputPath: this is the working/running directory of the model and should include the data of <code class="docutils literal notranslate"><span class="pre">directional</span></code>, <code class="docutils literal notranslate"><span class="pre">fluspect_parameters</span></code>, <code class="docutils literal notranslate"><span class="pre">leafangles</span></code>, <code class="docutils literal notranslate"><span class="pre">radiationdata</span></code>, <code class="docutils literal notranslate"><span class="pre">soil_spectra</span></code>, and <code class="docutils literal notranslate"><span class="pre">input_data.xlsx</span></code>.</p></li>
+<li><p class="sd-card-text">OutputPath: this is the base path to store outputs of the model. When the model runs, it creates <code class="docutils literal notranslate"><span class="pre">sitename_timestamped</span></code> directories under this path.</p></li>
+<li><p class="sd-card-text">ForcingPath: a path to the forcing/driving data. I.e. the Plumber2 dataset.</p></li>
+<li><p class="sd-card-text">Location: Location where the model should be run. Currently, the model runs at the site scale. For example, if we put <code class="docutils literal notranslate"><span class="pre">FI-Hyy</span></code> here, the model runs at the <code class="docutils literal notranslate"><span class="pre">FI-Hyy</span></code> site.</p></li>
+<li><p class="sd-card-text">StartTime: The start time of the model, in the ISO 8601 format. For example: <code class="docutils literal notranslate"><span class="pre">2001-01-01T00:00</span></code>. Note that the time can only be defined in half hour increments. If you want the start time to be the first available data point of the forcing data, you can set StartTime to <code class="docutils literal notranslate"><span class="pre">NA</span></code>.
+EndTime: The end time of the model. Formatted the same way as the StartTime. For example: <code class="docutils literal notranslate"><span class="pre">2001-12-31T23:30</span></code>. If you want the end time to be the last available data point of the forcing data, you can set EndTime to <code class="docutils literal notranslate"><span class="pre">NA</span></code>.</p></li>
+</ul>
+<p class="sd-card-text">To edit the config file, open the file with a text editor and change the paths. The variable names e.g. <code class="docutils literal notranslate"><span class="pre">SoilPropertyPath</span></code> should not be changed. Also, note a <code class="docutils literal notranslate"><span class="pre">/</span></code> is required at the end of each line.</p>
+<p class="sd-card-text">As explained above, the “InputPath” directory of the model is considered as the working/running directory and should include some data required by the model. As seen in the config file, the “InputPath” is now set as same as the “input” folder. This means that the “input” folder is treated as the model’s working/running directory. However, it is possible to create a different working/running directory and set the “InputPath” to it. Then, you should copy the required data i.e. <code class="docutils literal notranslate"><span class="pre">directional</span></code>, <code class="docutils literal notranslate"><span class="pre">fluspect_parameters</span></code>, <code class="docutils literal notranslate"><span class="pre">leafangles</span></code>, <code class="docutils literal notranslate"><span class="pre">radiationdata</span></code>, <code class="docutils literal notranslate"><span class="pre">soil_spectra</span></code>, and <code class="docutils literal notranslate"><span class="pre">input_data.xlsx</span></code> to the working/running directory.</p>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Example configuration file on Snellius</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Config file: it is a text file that sets the paths <strong>required</strong> by the model. For example, see <a class="reference external" href="https://github.com/EcoExtreML/STEMMUS_SCOPE/blob/main/run_model_on_snellius/config_file_snellius.txt">config_file_snellius.txt</a> or <a class="reference external" href="https://github.com/EcoExtreML/STEMMUS_SCOPE/blob/main/run_model_on_snellius/config_file_snellius_global.txt">config_file_snellius_global.txt</a> in this repository. This file includes:</p>
+<ul class="simple">
+<li><p class="sd-card-text">SoilPropertyPath: a path to soil texture data and soil hydraulic parameters.</p></li>
+<li><p class="sd-card-text">InputPath: this is the working/running directory of the model and should include the data of <code class="docutils literal notranslate"><span class="pre">directional</span></code>, <code class="docutils literal notranslate"><span class="pre">fluspect_parameters</span></code>, <code class="docutils literal notranslate"><span class="pre">leafangles</span></code>, <code class="docutils literal notranslate"><span class="pre">radiationdata</span></code>, <code class="docutils literal notranslate"><span class="pre">soil_spectra</span></code>, and <code class="docutils literal notranslate"><span class="pre">input_data.xlsx</span></code>.</p></li>
+<li><p class="sd-card-text">OutputPath: this is the base path to store outputs of the model. When the model runs, it creates <code class="docutils literal notranslate"><span class="pre">sitename_timestamped</span></code> directories under this path.</p></li>
+<li><p class="sd-card-text">ForcingPath: a path to the forcing/driving data. I.e. the Plumber2 dataset.</p></li>
+<li><p class="sd-card-text">Location: Location where the model should be run. Currently, the model runs at the site scale. For example, if we put <code class="docutils literal notranslate"><span class="pre">FI-Hyy</span></code> here, the model runs at the <code class="docutils literal notranslate"><span class="pre">FI-Hyy</span></code> site.</p></li>
+<li><p class="sd-card-text">StartTime: The start time of the model, in the ISO 8601 format. For example: <code class="docutils literal notranslate"><span class="pre">2001-01-01T00:00</span></code>. Note that the time can only be defined in half hour increments. If you want the start time to be the first available data point of the forcing data, you can set StartTime to <code class="docutils literal notranslate"><span class="pre">NA</span></code>.
+EndTime: The end time of the model. Formatted the same way as the StartTime. For example: <code class="docutils literal notranslate"><span class="pre">2001-12-31T23:30</span></code>. If you want the end time to be the last available data point of the forcing data, you can set EndTime to <code class="docutils literal notranslate"><span class="pre">NA</span></code>.</p></li>
+</ul>
+<p class="sd-card-text">To edit the config file, open the file with a text editor and change the paths. The <code class="docutils literal notranslate"><span class="pre">InputPath</span></code> and <code class="docutils literal notranslate"><span class="pre">OutputPath</span></code> are user-defined directories, make sure they exist and you have right permissions. The variable name e.g. <code class="docutils literal notranslate"><span class="pre">SoilPropertyPath</span></code> should not be changed. Also, note a <code class="docutils literal notranslate"><span class="pre">/</span></code> is required at the end of each line.</p>
+<p class="sd-card-text">As explained above, the “InputPath” directory of the model is considered as the working/running directory and should include some data required by the model. As seen in the config file, the “InputPath” is now set to an “input” folder under “scratch-shared” directory. This means that the “input” folder is treated as the model’s working/running directory. However, it is possible to create a different working/running directory and set the “InputPath” to it. Then, you should copy the required data i.e. <code class="docutils literal notranslate"><span class="pre">directional</span></code>, <code class="docutils literal notranslate"><span class="pre">fluspect_parameters</span></code>, <code class="docutils literal notranslate"><span class="pre">leafangles</span></code>, <code class="docutils literal notranslate"><span class="pre">radiationdata</span></code>, <code class="docutils literal notranslate"><span class="pre">soil_spectra</span></code>, and <code class="docutils literal notranslate"><span class="pre">input_data.xlsx</span></code> to the working/running directory. For example: <code class="docutils literal notranslate"><span class="pre">cp</span> <span class="pre">-r</span> <span class="pre">/projects/0/einf2480/model_parameters/vegetation_property/*</span> <span class="pre">/scratch-shared/EcoExtreML/STEMMUS_SCOPE/input/&lt;your_work_dir&gt;</span></code></p>
+</div>
+</details></section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -410,6 +543,25 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-rescources">1.2.1. Computing rescources</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#software">1.2.2. Software</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-source-code">1.2.3. Model source code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data">1.2.4. Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuration-file">1.2.5. Configuration file</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
