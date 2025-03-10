@@ -327,7 +327,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -343,6 +345,16 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#you-have-a-question">3.6.1. You have a question</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#you-think-you-may-have-found-a-bug">3.6.2. You think you may have found a bug</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#you-want-to-make-some-kind-of-change-to-the-code-base">3.6.3. You want to make some kind of change to the code base</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -354,6 +366,53 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="contributing-guide">
 <h1><span class="section-number">3.6. </span>Contributing guide<a class="headerlink" href="#contributing-guide" title="Permalink to this heading">#</a></h1>
+<p>We welcome any kind of contribution to <code class="docutils literal notranslate"><span class="pre">zampy</span></code>, from simple comments or questions to full-fledged pull requests. Please read and follow our <a class="reference external" href="https://zampy.readthedocs.io/en/latest/CODE_OF_CONDUCT/">Code of Conduct</a>.</p>
+<p>A contribution can be one of the following cases:</p>
+<ol class="arabic simple">
+<li><p>You have a question.</p></li>
+<li><p>You think you may have found a bug (including unexpected behavior).</p></li>
+<li><p>You want to make some kind of change to the code base (e.g., to fix a bug, to add a new feature, to update documentation).</p></li>
+<li><p>You want to make a new release of the code base.</p></li>
+</ol>
+<p>The sections below outline the steps in each case.</p>
+<section id="you-have-a-question">
+<h2><span class="section-number">3.6.1. </span>You have a question<a class="headerlink" href="#you-have-a-question" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Use the search functionality <a class="reference external" href="https://github.com/your-repo/issues">here</a> to see if someone already filed the same issue.</p></li>
+<li><p>If your issue search did not yield any relevant results, create a new issue.</p></li>
+<li><p>Apply the “Question” label; apply other labels when relevant.</p></li>
+</ol>
+</section>
+<section id="you-think-you-may-have-found-a-bug">
+<h2><span class="section-number">3.6.2. </span>You think you may have found a bug<a class="headerlink" href="#you-think-you-may-have-found-a-bug" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Use the search functionality <a class="reference external" href="https://github.com/your-repo/issues">here</a> to see if someone already filed the same issue.</p></li>
+<li><p>If your issue search did not yield any relevant results, create a new issue, providing enough information for the community to understand the cause and context of the problem. Depending on the issue, you may want to include:</p>
+<ul class="simple">
+<li><p>The SHA hashcode of the commit that is causing your problem.</p></li>
+<li><p>Identifying information (name and version number) for dependencies you’re using.</p></li>
+<li><p>Information about the operating system.</p></li>
+</ul>
+</li>
+<li><p>Apply relevant labels to the newly created issue.</p></li>
+</ol>
+</section>
+<section id="you-want-to-make-some-kind-of-change-to-the-code-base">
+<h2><span class="section-number">3.6.3. </span>You want to make some kind of change to the code base<a class="headerlink" href="#you-want-to-make-some-kind-of-change-to-the-code-base" title="Permalink to this heading">#</a></h2>
+<p>If you want to make changes to the code base, such as adding more datasets to the collection or supporting more conventions, please follow these steps:</p>
+<ol class="arabic simple">
+<li><p><strong>Announce your plan</strong> to the community before you start working. This announcement should be in the form of a (new) issue.</p></li>
+<li><p><strong>Wait until consensus is reached</strong> about your idea being a good idea.</p></li>
+<li><p>If needed, <strong>fork the repository</strong> to your own GitHub profile and create your own feature branch off of the latest master commit. While working on your feature branch, make sure to stay up to date with the master branch by pulling in changes, possibly from the ‘upstream’ repository.</p></li>
+<li><p>Ensure the existing tests still work by running <code class="docutils literal notranslate"><span class="pre">pytest</span></code>.</p></li>
+<li><p>Add your own tests (if necessary).</p></li>
+<li><p>Update or expand the documentation.</p></li>
+<li><p>Update the <code class="docutils literal notranslate"><span class="pre">CHANGELOG.md</span></code> file with your changes.</p></li>
+<li><p>Push your feature branch to (your fork of) the <code class="docutils literal notranslate"><span class="pre">zampy</span></code> repository on GitHub.</p></li>
+<li><p>Create the pull request.</p></li>
+</ol>
+<p>In case you feel like you’ve made a valuable contribution but don’t know how to write or run tests for it, or how to generate the documentation, don’t let this discourage you from making the pull request; we can help you! Just go ahead and submit the pull request, but keep in mind that you might be asked to append additional commits to your pull request.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -410,6 +469,23 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#you-have-a-question">3.6.1. You have a question</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#you-think-you-may-have-found-a-bug">3.6.2. You think you may have found a bug</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#you-want-to-make-some-kind-of-change-to-the-code-base">3.6.3. You want to make some kind of change to the code base</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

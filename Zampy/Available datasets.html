@@ -327,7 +327,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -343,6 +345,20 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#era5">3.3.1. ERA5</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#era5-land">3.3.2. ERA5-land</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eth-canopy-height">3.3.3. ETH canopy height</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prism-dem">3.3.4. PRISM DEM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cams-egg4">3.3.5. CAMS EGG4</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#land-cover-classification-maps">3.3.6. Land cover classification maps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fapar-leaf-area-index">3.3.7. FAPAR Leaf Area Index</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -354,6 +370,74 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="available-datasets">
 <h1><span class="section-number">3.3. </span>Available datasets<a class="headerlink" href="#available-datasets" title="Permalink to this heading">#</a></h1>
+<p>Currently, the following datasets are available. Note that not all variables from each dataset might be supported.</p>
+<p>You can add these yourself by creating a pull request, or open an issue to request a new feature.</p>
+<section id="era5">
+<h2><span class="section-number">3.3.1. </span>ERA5<a class="headerlink" href="#era5" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">mean_total_precipitation_rate</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">surface_thermal_radiation_downwards</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">surface_solar_radiation_downwards</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">surface_pressure</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">10m_u_component_of_wind</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">10m_v_component_of_wind</span></code></p></li>
+</ul>
+<p>Note: all hours in a day are covered and all days for the given month are included for downloading.</p>
+<p>For more information, see <a class="reference external" href="https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels?tab=overview">the ECMWF website</a>.</p>
+<p>If you want to add more datasets to the collection, or support more conventions, please check the <a class="reference internal" href="Contributing%20guide.html"><span class="std std-doc">contributing guide</span></a> and <a class="reference internal" href="For%20developers.html"><span class="std std-doc">readme for developers</span></a> before starting.</p>
+</section>
+<section id="era5-land">
+<h2><span class="section-number">3.3.2. </span>ERA5-land<a class="headerlink" href="#era5-land" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">2m_temperature</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2m_dewpoint_temperature</span></code></p></li>
+</ul>
+<p>Note: all hours in a day are covered and all days for the given month are included for downloading.</p>
+<p>For more information, see <a class="reference external" href="https://cds.climate.copernicus.eu/datasets/reanalysis-era5-land?tab=overview">the ECMWF website</a>.</p>
+<p>If you want to add more datasets to the collection, or support more conventions, please check the <a class="reference internal" href="Contributing%20guide.html"><span class="std std-doc">contributing guide</span></a> and <a class="reference internal" href="For%20developers.html"><span class="std std-doc">readme for developers</span></a> before starting.</p>
+</section>
+<section id="eth-canopy-height">
+<h2><span class="section-number">3.3.3. </span>ETH canopy height<a class="headerlink" href="#eth-canopy-height" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">height_of_vegetation</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">height_of_vegetation_standard_deviation</span></code></p></li>
+</ul>
+<p>For more information, see <a class="reference external" href="https://langnico.github.io/globalcanopyheight/">their webpage</a>.</p>
+<p>If you want to add more datasets to the collection, or support more conventions, please check the <a class="reference internal" href="Contributing%20guide.html"><span class="std std-doc">contributing guide</span></a> and <a class="reference internal" href="For%20developers.html"><span class="std std-doc">readme for developers</span></a> before starting.</p>
+</section>
+<section id="prism-dem">
+<h2><span class="section-number">3.3.4. </span>PRISM DEM<a class="headerlink" href="#prism-dem" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">elevation</span></code></p></li>
+</ul>
+<p>For more information, see <a class="reference external" href="https://langnico.github.io/globalcanopyheight/">their webpage</a>.</p>
+<p>If you want to add more datasets to the collection, or support more conventions, please check the <a class="reference internal" href="Contributing%20guide.html"><span class="std std-doc">contributing guide</span></a> and <a class="reference internal" href="For%20developers.html"><span class="std std-doc">readme for developers</span></a> before starting.</p>
+</section>
+<section id="cams-egg4">
+<h2><span class="section-number">3.3.5. </span>CAMS EGG4<a class="headerlink" href="#cams-egg4" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">carbon_dioxide</span></code></p></li>
+</ul>
+<p>Note: model level is set to “60” and all steps are included for downloading.</p>
+<p>For more information, see <a class="reference external" href="https://langnico.github.io/globalcanopyheight/">their webpage</a>.</p>
+<p>If you want to add more datasets to the collection, or support more conventions, please check the <a class="reference internal" href="Contributing%20guide.html"><span class="std std-doc">contributing guide</span></a> and <a class="reference internal" href="For%20developers.html"><span class="std std-doc">readme for developers</span></a> before starting.</p>
+</section>
+<section id="land-cover-classification-maps">
+<h2><span class="section-number">3.3.6. </span>Land cover classification maps<a class="headerlink" href="#land-cover-classification-maps" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">land_cover</span></code></p></li>
+</ul>
+<p>For more information, see <a class="reference external" href="https://langnico.github.io/globalcanopyheight/">their webpage</a>.</p>
+<p>If you want to add more datasets to the collection, or support more conventions, please check the <a class="reference internal" href="Contributing%20guide.html"><span class="std std-doc">contributing guide</span></a> and <a class="reference internal" href="For%20developers.html"><span class="std std-doc">readme for developers</span></a> before starting.</p>
+</section>
+<section id="fapar-leaf-area-index">
+<h2><span class="section-number">3.3.7. </span>FAPAR Leaf Area Index<a class="headerlink" href="#fapar-leaf-area-index" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">leaf_area_index</span></code></p></li>
+</ul>
+<p>For more information, see <a class="reference external" href="https://langnico.github.io/globalcanopyheight/">their webpage</a>.</p>
+<p>If you want to add more datasets to the collection, or support more conventions, please check the <a class="reference internal" href="Contributing%20guide.html"><span class="std std-doc">contributing guide</span></a> and <a class="reference internal" href="For%20developers.html"><span class="std std-doc">readme for developers</span></a> before starting.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -410,6 +494,27 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#era5">3.3.1. ERA5</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#era5-land">3.3.2. ERA5-land</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eth-canopy-height">3.3.3. ETH canopy height</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prism-dem">3.3.4. PRISM DEM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cams-egg4">3.3.5. CAMS EGG4</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#land-cover-classification-maps">3.3.6. Land cover classification maps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fapar-leaf-area-index">3.3.7. FAPAR Leaf Area Index</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

@@ -327,7 +327,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -343,6 +345,22 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#development-install">3.5.1. Development install</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-tests">3.5.2. Running the tests</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-linters-locally">3.5.3. Running linters locally</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linter">3.5.3.1. linter</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-the-documentation">3.5.4. Generating the documentation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#versioning">3.5.5. Versioning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#making-a-release">3.5.6. Making a release</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -354,6 +372,125 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="for-developers">
 <h1><span class="section-number">3.5. </span>For developers<a class="headerlink" href="#for-developers" title="Permalink to this heading">#</a></h1>
+<p>If you’re looking for user documentation, go <a class="reference internal" href="Getting%20started.html"><span class="std std-doc">here</span></a>.</p>
+<section id="development-install">
+<h2><span class="section-number">3.5.1. </span>Development install<a class="headerlink" href="#development-install" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a virtual environment, e.g. with</span>
+<span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="n">env</span>
+
+<span class="c1"># activate virtual environment</span>
+<span class="n">source</span> <span class="n">env</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
+
+<span class="c1"># make sure to have a recent version of pip and hatch</span>
+<span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">pip</span> <span class="n">hatch</span>
+
+<span class="c1"># (from the project root directory)</span>
+<span class="c1"># install s2spy as an editable package</span>
+<span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">cache</span><span class="o">-</span><span class="nb">dir</span> <span class="o">--</span><span class="n">editable</span> <span class="o">.</span>
+<span class="c1"># install development dependencies</span>
+<span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">cache</span><span class="o">-</span><span class="nb">dir</span> <span class="o">--</span><span class="n">editable</span> <span class="o">.</span><span class="p">[</span><span class="n">dev</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+    <span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="n">env</span>
+               <span class="o">^</span>
+<span class="ne">SyntaxError</span>: invalid syntax
+</pre></div>
+</div>
+</div>
+</div>
+<p>Afterwards check that the install directory is present in the <code class="docutils literal notranslate"><span class="pre">PATH</span></code> environment variable.</p>
+</section>
+<section id="running-the-tests">
+<h2><span class="section-number">3.5.2. </span>Running the tests<a class="headerlink" href="#running-the-tests" title="Permalink to this heading">#</a></h2>
+<p>Running tests has been configured using <code class="docutils literal notranslate"><span class="pre">hatch</span></code>, and can be started by running:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hatch</span> <span class="n">run</span> <span class="n">test</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The second is to use tox, which can be installed separately (e.g. with <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">tox</span></code>), i.e. not necessarily inside the virtual environment you use for installing <code class="docutils literal notranslate"><span class="pre">zampy</span></code>, but then builds the necessary virtual environments itself by simply running:</p>
+<p><strong>Test coverage</strong></p>
+<p>In addition to just running the tests to see if they pass, they can be used for coverage statistics, i.e. to determine how much of the package’s code is actually executed during tests. Inside the package directory, run:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hatch</span> <span class="n">run</span> <span class="n">coverage</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This runs tests and prints the results to the command line, as well as storing the result in a <code class="docutils literal notranslate"><span class="pre">coverage.xml</span></code> file (for analysis by, e.g. SonarCloud).</p>
+</section>
+<section id="running-linters-locally">
+<h2><span class="section-number">3.5.3. </span>Running linters locally<a class="headerlink" href="#running-linters-locally" title="Permalink to this heading">#</a></h2>
+<p>For linting we will use flake8, black and isort. We additionally use mypy to check the type hints. All tools can simply be run by doing:</p>
+<section id="linter">
+<h3><span class="section-number">3.5.3.1. </span>linter<a class="headerlink" href="#linter" title="Permalink to this heading">#</a></h3>
+<p>hatch run lint</p>
+<p>To easily comply with <code class="docutils literal notranslate"><span class="pre">black</span></code> and <code class="docutils literal notranslate"><span class="pre">isort</span></code>, you can also run:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hatch</span> <span class="n">run</span> <span class="nb">format</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This will apply the <code class="docutils literal notranslate"><span class="pre">black</span></code> and <code class="docutils literal notranslate"><span class="pre">isort</span></code> formatting, and then check the code style.</p>
+</section>
+</section>
+<section id="generating-the-documentation">
+<h2><span class="section-number">3.5.4. </span>Generating the documentation<a class="headerlink" href="#generating-the-documentation" title="Permalink to this heading">#</a></h2>
+<p>To generate the documentation, simply run the following command. This will also test the documentation code snippets. Note that you might need to install <code class="docutils literal notranslate"><span class="pre">pandoc</span></code> to be able to generate the documentation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hatch</span> <span class="n">run</span> <span class="n">docs</span><span class="p">:</span><span class="n">build</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The documentation will be in <code class="docutils literal notranslate"><span class="pre">docs/_build/html</span></code>.</p>
+</section>
+<section id="versioning">
+<h2><span class="section-number">3.5.5. </span>Versioning<a class="headerlink" href="#versioning" title="Permalink to this heading">#</a></h2>
+<p>Bumping the version across all files is done with <a class="reference external" href="https://github.com/callowayproject/bump-my-version">bump-my-version</a>, e.g.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bumpversion</span> <span class="n">bump</span> <span class="n">major</span>
+<span class="n">bumpversion</span> <span class="n">bump</span> <span class="n">minor</span>
+<span class="n">bumpversion</span> <span class="n">bump</span> <span class="n">patch</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="making-a-release">
+<h2><span class="section-number">3.5.6. </span>Making a release<a class="headerlink" href="#making-a-release" title="Permalink to this heading">#</a></h2>
+<p>This section describes how to make a release in 3 parts: preparation, release and validation.</p>
+<p><strong>Preparation</strong></p>
+<ol class="arabic simple">
+<li><p>Update the (don’t forget to update links at bottom of page)</p></li>
+<li><p>Verify that the information in <code class="docutils literal notranslate"><span class="pre">CITATION.cff</span></code> is correct, and that <code class="docutils literal notranslate"><span class="pre">.zenodo.json</span></code> contains equivalent data</p></li>
+<li><p>Make sure the <a class="reference internal" href="#versioning"><span class="xref myst">version has been updated</span></a>.</p></li>
+<li><p>Run the unit tests with <code class="docutils literal notranslate"><span class="pre">hatch</span> <span class="pre">run</span> <span class="pre">test</span></code></p></li>
+</ol>
+<p><strong>Making the GitHub release</strong></p>
+<p>Make a release and tag on <a class="reference external" href="http://GitHub.com">GitHub.com</a>. This will:</p>
+<ul class="simple">
+<li><p>trigger Zenodo into making a snapshot of your repository and sticking a DOI on it.</p></li>
+<li><p>start a GitHub action that builds and uploads the new version to <a class="reference external" href="https://pypi.org/project/zampy/">PyPI</a>.</p></li>
+</ul>
+<p><strong>Validation</strong></p>
+<p>After making the release, you should check that:</p>
+<ul class="simple">
+<li><p>The <a class="reference external" href="https://github.com/EcoExtreML/zampy/.github/workflows/publish.yml">publishing action</a> ran successfully, and that <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">zampy</span></code> installs the new version.</p></li>
+</ul>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -410,6 +547,29 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#development-install">3.5.1. Development install</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-tests">3.5.2. Running the tests</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-linters-locally">3.5.3. Running linters locally</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linter">3.5.3.1. linter</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-the-documentation">3.5.4. Generating the documentation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#versioning">3.5.5. Versioning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#making-a-release">3.5.6. Making a release</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

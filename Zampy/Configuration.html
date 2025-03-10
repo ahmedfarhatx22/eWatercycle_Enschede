@@ -327,7 +327,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -343,6 +345,16 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">3.2.1. Installation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3.2.2. Configuration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instructions-for-cds-ads-datasets">3.2.3. Instructions for CDS/ADS datasets</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -354,6 +366,67 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="configuration">
 <h1><span class="section-number">3.2. </span>Configuration<a class="headerlink" href="#configuration" title="Permalink to this heading">#</a></h1>
+<section id="installation">
+<h2><span class="section-number">3.2.1. </span>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">#</a></h2>
+<p>Zampy can be installed by doing:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">zampy</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+    <span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">zampy</span>
+               <span class="o">^</span>
+<span class="ne">SyntaxError</span>: invalid syntax
+</pre></div>
+</div>
+</div>
+</div>
+<p>To install the in-development version from the GitHub repository, do:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">git</span><span class="o">+</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">EcoExtreML</span><span class="o">/</span><span class="n">zampy</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id1">
+<h2><span class="section-number">3.2.2. </span>Configuration<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Zampy</span></code> needs to be configured with a simple configuration file.</p>
+<p>You need to create this file under your user home directory:</p>
+<p><code class="docutils literal notranslate"><span class="pre">~/.config/zampy/zampy_config.yml</span></code></p>
+<p>The configuration file should contain the <code class="docutils literal notranslate"><span class="pre">working_directory</span></code>, for instance:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">working_directory</span><span class="p">:</span> <span class="o">/</span><span class="n">path_to_a_working_directory</span><span class="o">/</span>  <span class="c1">#for example: /home/bart/Zampy</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The old Climate Data Store (CDS) is shut down on 3 September 2024. For more information see: <a class="reference external" href="https://forum.ecmwf.int/t/the-new-climate-data-store-beta-cds-beta-is-now-live/3315">the-new-climate-data-store-beta</a>. To use the new CDS/ADS, you need to have an ECMWF account, your existing CDS/ADS credentials does not work.</p>
+<p>If you need access to data on CDS or ADS server, you should add your CDS/ADS credentials to <code class="docutils literal notranslate"><span class="pre">zampy_config.yml</span></code>. To find your key, go to <a class="reference external" href="https://cds.climate.copernicus.eu/how-to-api">CDS how to api</a>, or <a class="reference external" href="https://ads.atmosphere.copernicus.eu/how-to-api">ADS how to api</a>. You can skip the steps related to .cdsapirc and simply add the key to zampy_config.yml:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cdsapi</span><span class="p">:</span>
+  <span class="n">url</span><span class="p">:</span>  <span class="c1"># for example https://cds.climate.copernicus.eu/api</span>
+  <span class="n">key</span><span class="p">:</span>  <span class="c1"># for example xhashd-232jcsha-dsaj429-cdjajd29319</span>
+<span class="n">adsapi</span><span class="p">:</span>
+  <span class="n">url</span><span class="p">:</span>  <span class="c1"># for example https://ads.atmosphere.copernicus.eu/api</span>
+  <span class="n">key</span><span class="p">:</span>  <span class="c1"># for example xhashd-232jcsha-dsaj429-cdjajd29319</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="instructions-for-cds-ads-datasets">
+<h2><span class="section-number">3.2.3. </span>Instructions for CDS/ADS datasets<a class="headerlink" href="#instructions-for-cds-ads-datasets" title="Permalink to this heading">#</a></h2>
+<p>To download the following datasets, users need access to CDS/ADS via <code class="docutils literal notranslate"><span class="pre">cdsapi/adsapi</span></code>: - CDS - ERA5 - ERA5 land - LAI - land cover - ADS - CAMS EGG4 (e.g. co2)</p>
+<p><strong>Agree to the Terms of Use on CDS/ADS</strong></p>
+<p>When downloading a dataset for the first time, it is <strong>necessary to agree to the Terms of Use of every datasets that you intend to download</strong>. This can only be done via the CDS/ADS website. When you try to download these datasets, you will be prompted to go to the terms of use and accept them.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -410,6 +483,23 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">3.2.1. Installation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3.2.2. Configuration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instructions-for-cds-ads-datasets">3.2.3. Instructions for CDS/ADS datasets</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

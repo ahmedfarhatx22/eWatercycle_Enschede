@@ -327,7 +327,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -343,6 +345,15 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-site-data">2.2.1. Using site data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-global-data">2.2.2. Using global data</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -354,6 +365,243 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="running-the-stemmus-scope-with-different-datasets">
 <h1><span class="section-number">2.2. </span>Running the STEMMUS_SCOPE with different datasets<a class="headerlink" href="#running-the-stemmus-scope-with-different-datasets" title="Permalink to this heading">#</a></h1>
+<p>This notebook shows how to run the <code class="docutils literal notranslate"><span class="pre">STEMMUS_SCOPE</span></code> model uisng the <code class="docutils literal notranslate"><span class="pre">Executable</span></code> file, including preprocessing and postprocessing. <a class="reference internal" href="Running%20the%20STEMMUS_SCOPE%20model%20on%20a%20system.html"><span class="std std-doc">See the Different ways to run the model</span></a> for different ways e.g. Executable file, Matlab, Octave.</p>
+<p>Also, check the <code class="docutils literal notranslate"><span class="pre">Getting</span> <span class="pre">started</span></code> page on documentation of <a class="reference internal" href="../Semmus_Scope/Getting%20started.html"><span class="std std-doc">STEMMUS_SCOPE</span></a> and <a class="reference external" href="https://pystemmusscope.readthedocs.io/en/latest/">pystemmusscope</a>.</p>
+<p>For postprocesisng, the file required_netcdf_variables.csv can be found at <a class="reference external" href="https://github.com/EcoExtreML/STEMMUS_SCOPE/blob/main/utils/csv_to_nc/required_netcdf_variables.csv.">here</a></p>
+<p>Which datasets are available?</p>
+<p>The config file shows how to set the paths to different data needed by the model. Check the data source on Snelius and CRIB and modify the config file accordingly:</p>
+<p><strong>On CRIB</strong></p>
+<ul class="simple">
+<li><p>Site data:</p>
+<ul>
+<li><p>path to data: <code class="docutils literal notranslate"><span class="pre">/data/shared/EcoExtreML/STEMMUS_SCOPEv1.0.0/input</span></code>,</p></li>
+<li><p>config file template: <a class="reference external" href="https://github.com/EcoExtreML/STEMMUS_SCOPE/blob/main/config_file_crib.txt">here</a></p></li>
+</ul>
+</li>
+<li><p>Global data:</p></li>
+<li><p>path to data: <code class="docutils literal notranslate"><span class="pre">/data/shared/EcoExtreML/STEMMUS_SCOPEv1.0.0/global_data</span></code></p></li>
+<li><p>config file template:  <a class="reference external" href="https://github.com/EcoExtreML/STEMMUS_SCOPE/blob/main/run_model_on_snellius/config_file_crib_global.txt">here</a></p></li>
+</ul>
+<p><strong>On Snellius</strong></p>
+<ul class="simple">
+<li><p>Site data:</p>
+<ul>
+<li><p>path to data: <code class="docutils literal notranslate"><span class="pre">/projects/0/ttse0619/</span></code>,</p></li>
+<li><p>config file template: <a class="reference external" href="https://github.com/EcoExtreML/STEMMUS_SCOPE/blob/main/run_model_on_snellius/config_file_snellius.txt">here</a></p></li>
+</ul>
+</li>
+<li><p>Global data:</p>
+<ul>
+<li><p>path to data: <code class="docutils literal notranslate"><span class="pre">/projects/0/ttse0619/global_data</span></code>,</p></li>
+<li><p>config file template: <a class="reference external" href="https://github.com/EcoExtreML/STEMMUS_SCOPE/blob/main/run_model_on_snellius/config_file_snellius_global.txt">here</a></p></li>
+</ul>
+</li>
+</ul>
+<p>Choose how do you want to run the model:</p>
+<p><a class="reference internal" href="#using-site-data"><span class="xref myst">Using site data</span></a></p>
+<p><a class="reference internal" href="#using-global-data"><span class="xref myst">Using global data</span></a></p>
+<section id="using-site-data">
+<h2><span class="section-number">2.2.1. </span>Using site data<a class="headerlink" href="#using-site-data" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">PyStemmusScope</span><span class="w"> </span><span class="kn">import</span> <span class="n">StemmusScope</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">PyStemmusScope</span><span class="w"> </span><span class="kn">import</span> <span class="n">save</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">from</span><span class="w"> </span><span class="nn">PyStemmusScope</span><span class="w"> </span><span class="kn">import</span> <span class="n">StemmusScope</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span><span class="w"> </span><span class="nn">PyStemmusScope</span><span class="w"> </span><span class="kn">import</span> <span class="n">save</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;PyStemmusScope&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># user must provide the correct path</span>
+<span class="n">path_to_config_file</span> <span class="o">=</span> <span class="s2">&quot;./my_config_template.txt&quot;</span>
+<span class="n">path_to_exe_file</span> <span class="o">=</span> <span class="s2">&quot;./STEMMUS_SCOPE&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you run the model on your own machine, make sure LD_LIBRARY_PATH is set correctly. To do this, uncomment the cell below and run it:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># # Set LD_LIBRARY_PATH</span>
+<span class="c1"># matlab_path = !whereis MATLAB</span>
+<span class="c1"># matlab_path = matlab_path.s.split(&quot;: &quot;)[1]</span>
+<span class="c1"># os.environ[&#39;LD_LIBRARY_PATH&#39;] = (</span>
+<span class="c1">#     f&quot;{matlab_path}/MATLAB_Runtime/R2023a/runtime/glnxa64:&quot;</span>
+<span class="c1">#     f&quot;{matlab_path}/MATLAB_Runtime/R2023a/bin/glnxa64:&quot;</span>
+<span class="c1">#     f&quot;{matlab_path}/MATLAB_Runtime/R2023a/sys/os/glnxa64:&quot;</span>
+<span class="c1">#     f&quot;{matlab_path}/MATLAB_Runtime/R2023a/extern/bin/glnxa64:&quot;</span>
+<span class="c1">#     f&quot;{matlab_path}/MATLAB_Runtime/R2023a/sys/opengl/lib/glnxa64&quot;)</span>
+<span class="c1"># print(os.environ[&#39;LD_LIBRARY_PATH&#39;])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>/usr/local/MATLAB/MATLAB_Runtime/R2023a/runtime/glnxa64:/usr/local/MATLAB/MATLAB_Runtime/R2023a/bin/glnxa64:/usr/</p>
+<p>local/MATLAB/MATLAB_Runtime/R2023a/sys/os/glnxa64:/usr/local/MATLAB/MATLAB_Runtime/R2023a/extern/bin/glnxa64:/usr/</p>
+<p>local/MATLAB/MATLAB_Runtime/R2023a/sys/opengl/lib/glnxa64</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create an an instance of the model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">StemmusScope</span><span class="p">(</span><span class="n">config_file</span><span class="o">=</span><span class="n">path_to_config_file</span><span class="p">,</span> <span class="n">model_src_path</span><span class="o">=</span><span class="n">path_to_exe_file</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># setup the model</span>
+<span class="c1"># here you can change the location and start &amp; end time</span>
+<span class="n">config_path</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span>
+    <span class="n">Location</span><span class="o">=</span><span class="s2">&quot;ZA-Kru&quot;</span><span class="p">,</span>
+    <span class="n">StartTime</span><span class="o">=</span><span class="s2">&quot;2001-01-01T00:00&quot;</span><span class="p">,</span>
+    <span class="n">EndTime</span><span class="o">=</span><span class="s2">&quot;2001-01-02T01:30&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># new config file genertaed to run the model</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;New config file </span><span class="si">{</span><span class="n">config_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># see input and output paths generated by the model</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Model input dir </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;InputPath&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Model output dir </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;OutputPath&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>New config file /home/sarah/temp/ecoextreml/test/input/ZA-Kru_2024-01-24-1125/ZA-Kru_2024-01-24-1125_config.txt</p>
+<p>Model input dir /home/sarah/temp/ecoextreml/test/input/ZA-Kru_2024-01-24-1125/</p>
+<p>Model output dir /home/sarah/temp/ecoextreml/test/output/ZA-Kru_2024-01-24-1125/</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># run the model</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="n">result</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>‘Reading config from /home/sarah/temp/ecoextreml/test/input/ZA-Kru_2024-01-24-1125/ZA-Kru_2024-01-24-1125_config.</p>
+<p>txt\nFinished model initialization\nThe calculations start now\nFinalizing STEMMUS_SCOPE\n’</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># save output in netcdf format</span>
+<span class="n">required_netcdf_variables</span> <span class="o">=</span> <span class="s2">&quot;./required_netcdf_variables.csv&quot;</span>
+<span class="n">nc_file_name</span> <span class="o">=</span> <span class="n">save</span><span class="o">.</span><span class="n">to_netcdf</span><span class="p">(</span><span class="n">config_path</span><span class="p">,</span> <span class="n">required_netcdf_variables</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">nc_file_name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>/home/sarah/temp/ecoextreml/test/output/ZA-Kru_2024-01-24-1125/ZA-Kru_2024-01-24-1125_STEMMUS_SCOPE.nc</p>
+</section>
+<section id="using-global-data">
+<h2><span class="section-number">2.2.2. </span>Using global data<a class="headerlink" href="#using-global-data" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">PyStemmusScope</span><span class="w"> </span><span class="kn">import</span> <span class="n">StemmusScope</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">PyStemmusScope</span><span class="w"> </span><span class="kn">import</span> <span class="n">save</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># user must provide the correct path</span>
+<span class="n">path_to_config_file</span> <span class="o">=</span> <span class="s2">&quot;./my_config_template_global.txt&quot;</span>
+<span class="n">path_to_exe_file</span> <span class="o">=</span> <span class="s2">&quot;./STEMMUS_SCOPE&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you run the model on your own machine, make sure LD_LIBRARY_PATH is set correctly. To do this, uncomment the cell below and run it:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># # Set LD_LIBRARY_PATH</span>
+<span class="c1"># matlab_path = !whereis MATLAB</span>
+<span class="c1"># matlab_path = matlab_path.s.split(&quot;: &quot;)[1]</span>
+<span class="c1"># os.environ[&#39;LD_LIBRARY_PATH&#39;] = (</span>
+<span class="c1">#     f&quot;{matlab_path}/MATLAB_Runtime/R2023a/runtime/glnxa64:&quot;</span>
+<span class="c1">#     f&quot;{matlab_path}/MATLAB_Runtime/R2023a/bin/glnxa64:&quot;</span>
+<span class="c1">#     f&quot;{matlab_path}/MATLAB_Runtime/R2023a/sys/os/glnxa64:&quot;</span>
+<span class="c1">#     f&quot;{matlab_path}/MATLAB_Runtime/R2023a/extern/bin/glnxa64:&quot;</span>
+<span class="c1">#     f&quot;{matlab_path}/MATLAB_Runtime/R2023a/sys/opengl/lib/glnxa64&quot;)</span>
+<span class="c1"># print(os.environ[&#39;LD_LIBRARY_PATH&#39;])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>/usr/local/MATLAB/MATLAB_Runtime/R2023a/runtime/glnxa64:/usr/local/MATLAB/MATLAB_Runtime/R2023a/bin/glnxa64:/usr/local/MATLAB/MATLAB_Runtime/R2023a/sys/os/glnxa64:/usr/local/MATLAB/MATLAB_Runtime/R2023a/extern/bin/glnxa64:/usr/local/MATLAB/MATLAB_Runtime/R2023a/sys/opengl/lib/glnxa64</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create an an instance of the model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">StemmusScope</span><span class="p">(</span><span class="n">config_file</span><span class="o">=</span><span class="n">path_to_config_file</span><span class="p">,</span> <span class="n">model_src_path</span><span class="o">=</span><span class="n">path_to_exe_file</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># setup the model</span>
+<span class="n">config_path</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span>
+    <span class="n">Location</span><span class="o">=</span><span class="s2">&quot;(61.8474, 24.2948)&quot;</span><span class="p">,</span>
+    <span class="n">StartTime</span><span class="o">=</span><span class="s2">&quot;2014-01-10T00:00&quot;</span><span class="p">,</span>
+    <span class="n">EndTime</span><span class="o">=</span><span class="s2">&quot;2014-01-15T00:00&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># new config file genertaed to run the model</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;New config file </span><span class="si">{</span><span class="n">config_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># see input and output paths generated by the model</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Model input dir </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;InputPath&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Model output dir </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;OutputPath&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>/home/sarah/miniconda3/envs/pystemmusscope/lib/python3.10/site-packages/dask/array/core.py:4836: PerformanceWarning: Increasing number of chunks by factor of 16</p>
+<p>result = blockwise(
+/home/sarah/miniconda3/envs/pystemmusscope/lib/python3.10/site-packages/dask/array/core.py:4836: PerformanceWarning: Increasing number of chunks by factor of 16</p>
+<p>result = blockwise(
+/home/sarah/miniconda3/envs/pystemmusscope/lib/python3.10/site-packages/dask/array/core.py:4836: PerformanceWarning: Increasing number of chunks by factor of 16</p>
+<p>result = blockwise(
+/home/sarah/miniconda3/envs/pystemmusscope/lib/python3.10/site-packages/dask/array/core.py:4836: PerformanceWarning: Increasing number of chunks by factor of 16</p>
+<p>result = blockwise(</p>
+<p>New config file /home/sarah/temp/ecoextreml/test/input/global_N61-847_E24-295_2024-02-02-1620/global_2024-02-02-1620_config.txt</p>
+<p>Model input dir /home/sarah/temp/ecoextreml/test/input/global_N61-847_E24-295_2024-02-02-1620/</p>
+<p>Model output dir /home/sarah/temp/ecoextreml/test/output/global_N61-847_E24-295_2024-02-02-1620/</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># run the model</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="n">result</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># save output in netcdf format</span>
+<span class="n">required_netcdf_variables</span> <span class="o">=</span> <span class="s2">&quot;./required_netcdf_variables.csv&quot;</span>
+<span class="n">nc_file_name</span> <span class="o">=</span> <span class="n">save</span><span class="o">.</span><span class="n">to_netcdf</span><span class="p">(</span><span class="n">config_path</span><span class="p">,</span> <span class="n">required_netcdf_variables</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">nc_file_name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -410,6 +658,22 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-site-data">2.2.1. Using site data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-global-data">2.2.2. Using global data</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
