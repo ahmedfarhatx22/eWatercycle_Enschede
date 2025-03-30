@@ -327,7 +327,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -343,6 +345,15 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-of-stemmus-scope">1.3.1. Workflow of STEMMUS_SCOPE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-workflow-of-running-the-model">1.3.2. Example workflow of running the model</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -354,6 +365,179 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="running-the-model">
 <span id="running-model"></span><h1><span class="section-number">1.3. </span>Running the model<a class="headerlink" href="#running-the-model" title="Permalink to this heading">#</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The instructions below are meant for users who want to run the model. If you want to add changes to the model, see the documentation on “Contributing guide”.</p>
+</div>
+<section id="workflow-of-stemmus-scope">
+<h2><span class="section-number">1.3.1. </span>Workflow of STEMMUS_SCOPE<a class="headerlink" href="#workflow-of-stemmus-scope" title="Permalink to this heading">#</a></h2>
+<p>The model reads the forcing file associated with the specified site/location, e.g., <code class="docutils literal notranslate"><span class="pre">FI-Hyy_1996-2014_FLUXNET2015_Met.nc</span></code> from “ForcingPath” and extracts forcing variables in <code class="docutils literal notranslate"><span class="pre">.dat</span></code> format. The <code class="docutils literal notranslate"><span class="pre">.dat</span></code> files are stored in the <code class="docutils literal notranslate"><span class="pre">InputPath</span></code> directory. In addition, the model reads the site information i.e. the location and vegetation parameters.
+The model runs step by step until the whole simulation period is completed i.e till the last time step of the forcing data.
+The results are saved as binary files temporarily. Then, the binary files are converted to <code class="docutils literal notranslate"><span class="pre">.csv</span></code> files and stored in a <code class="docutils literal notranslate"><span class="pre">sitename_timestamped</span></code> output directory under <code class="docutils literal notranslate"><span class="pre">OutputPath</span></code>.</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Run the model with MATLAB</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Local device</p>
+<p>If you have <a class="reference external" href="https://nl.mathworks.com/products/matlab.html">MATLAB</a> installed on your device, you can run the model by passing config file path to the variable <code class="docutils literal notranslate"><span class="pre">CFG</span></code> in the main script <code class="docutils literal notranslate"><span class="pre">STEMMUS_SCOPE.m</span></code>.</p>
+<p>As an alternative, you can run the main script using MATLAB command line in a terminal:</br>
+<code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">src/</span></code> </br>
+<code class="docutils literal notranslate"><span class="pre">matlab</span> <span class="pre">-nodisplay</span> <span class="pre">-nosplash</span> <span class="pre">-nodesktop</span> <span class="pre">-r</span> <span class="pre">&quot;run('STEMMUS_SCOPE.m');exit;&quot;</span></code></p>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">CRIB</p>
+<p>To open MATLAB desktop on CRIB, click on the <code class="docutils literal notranslate"><span class="pre">Remote</span> <span class="pre">Desktop</span></code> in the Launcher. Click on the <code class="docutils literal notranslate"><span class="pre">Applications</span></code>. You will find the ‘MATLAB’ software under the <code class="docutils literal notranslate"><span class="pre">Research</span></code>. After clicking on ‘MATLAB’, it asks for your account information that is connected to a MATLAB license. Then, you can run the model by passing config file path to the variable <code class="docutils literal notranslate"><span class="pre">CFG</span></code> in the main script <code class="docutils literal notranslate"><span class="pre">STEMMUS_SCOPE.m</span></code>.</p>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Snellius</p>
+<p>In order to use MATLAB, you need to send a request to add you to the user pool on Snellius. Then, pass config file path to the variable <code class="docutils literal notranslate"><span class="pre">CFG</span></code> in the main script <code class="docutils literal notranslate"><span class="pre">STEMMUS_SCOPE.m</span></code>. To run the main script <code class="docutils literal notranslate"><span class="pre">STEMMUS_SCOPE.m</span></code> using MATLAB command line in a terminal on a <strong>compute node</strong>:</p>
+<pre>
+module load 2023 
+module load MATLAB/2023a-upd4` 
+cd src/ 
+matlab -nodisplay -nosplash -nodesktop -r "run('STEMMUS_SCOPE.m');exit;"
+</pre> 
+<p>To submit a job to a compute node, see instructions <a class="reference external" href="https://servicedesk.surf.nl/wiki/spaces/WIKI/pages/30660234/Example+job+scripts">here</a>.</p>
+</div>
+</div>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Run the model with MATLAB Runtime</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Local device</p>
+<p>If you want to run the model as a standalone application, you need <a class="reference external" href="https://nl.mathworks.com/products/compiler/matlab-runtime.html">MATLAB Runtime</a> version <code class="docutils literal notranslate"><span class="pre">2023a</span></code>. You don’t need a license for MATLAB Runtime. Note that the version of the MATLAB Runtime is tied to the version of MATLAB. The executable file works on the operating system on which the file is created. The file <code class="docutils literal notranslate"><span class="pre">STEMMUS_SCOPE</span></code> under <code class="docutils literal notranslate"><span class="pre">exe</span></code> directory is an executable file of STEMMUS_SCOPE that is created using MATLAB version <code class="docutils literal notranslate"><span class="pre">2023a</span></code> in a <strong>Linux system</strong>.</p>
+<p>Make sure <code class="docutils literal notranslate"><span class="pre">LD_LIBRARY_PATH</span></code> is set correctly, in a terminal:</p>
+<pre> export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/MATLAB/MATLAB_Runtime/v2023a/runtime/glnxa64:/usr/local/MATLAB/MATLAB_Runtime/v2023a/bin/glnxa64:/usr/local/MATLAB/MATLAB_Runtime/v2023a/sys/os/glnxa64:/usr/local/MATLAB/MATLAB_Runtime/v2023a/sys/opengl/lib/glnxa64 </pre>
+<p>Change <code class="docutils literal notranslate"><span class="pre">/usr/local/MATLAB/MATLAB_Runtime/v2023a</span></code> to the path where MATLAB Runtime is installed.</p>
+<p>Then, you can run the model in a terminal:</p>
+<pre> ./STEMMUS_SCOPE/exe/STEMMUS_SCOPE config_file_template.txt </pre>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">CRIB</p>
+<p>On CRIB, MATLAB Runtime <a class="reference external" href="https://nl.mathworks.com/products/compiler/matlab-runtime.html">MATLAB Runtime</a> is not available. Contact the system administrator for more information.</p>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Snellius</p>
+<p><a class="reference external" href="https://nl.mathworks.com/products/compiler/matlab-runtime.html">MATLAB Runtime</a> is available on Snellius. You can run the model by passing the path of the config file in a terminal on a <strong>compute node</strong>:</p>
+<pre> 
+module load 2023
+module load MATLAB/2023a-upd4
+./STEMMUS_SCOPE/exe/STEMMUS_SCOPE config_file_snellius.txt </pre>
+<p>Note that you don’t need to set <code class="docutils literal notranslate"><span class="pre">LD_LIBRARY_PATH</span></code> on Snellius. To submit a job to a compute node, see instructions <a class="reference external" href="https://servicedesk.surf.nl/wiki/spaces/WIKI/pages/30660234/Example+job+scripts">here</a>.</p>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">BMI interface</p>
+<p>You can run the model using the <a class="reference external" href="https://bmi.csdms.io/en/stable/">BMI</a> interface. The BMI interface is available in the script <code class="docutils literal notranslate"><span class="pre">STEMMUS_SCOPE_exe.m</span></code>. For that, you need <a class="reference external" href="https://nl.mathworks.com/products/compiler/matlab-runtime.html">MATLAB Runtime</a> version <code class="docutils literal notranslate"><span class="pre">2023a</span></code>. You don’t need a license for MATLAB Runtime. Note that the version of the MATLAB Runtime is tied to the version of MATLAB. The executable file works on the operating system on which the file is created. The file <code class="docutils literal notranslate"><span class="pre">STEMMUS_SCOPE</span></code> under <code class="docutils literal notranslate"><span class="pre">exe</span></code> directory is an executable file of STEMMUS_SCOPE that is created using MATLAB version <code class="docutils literal notranslate"><span class="pre">2023a</span></code> in a <strong>Linux system</strong>.</p>
+<p>Make sure <code class="docutils literal notranslate"><span class="pre">LD_LIBRARY_PATH</span></code> is set correctly, in a terminal:</p>
+<pre> export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/MATLAB/MATLAB_Runtime/v2023a/runtime/glnxa64:/usr/local/MATLAB/MATLAB_Runtime/v2023a/bin/glnxa64:/usr/local/MATLAB/MATLAB_Runtime/v2023a/sys/os/glnxa64:/usr/local/MATLAB/MATLAB_Runtime/v2023a/sys/opengl/lib/glnxa64 </pre>
+<p>Change <code class="docutils literal notranslate"><span class="pre">/usr/local/MATLAB/MATLAB_Runtime/v2023a</span></code> to the path where MATLAB Runtime is installed.</p>
+<p>To enter the BMI mode:</p>
+<pre> 
+./STEMMUS_SCOPE/exe/STEMMUS_SCOPE "" bmi
+</pre>
+<p>Now, BMI asks you to select one of the steps “initialize”, “update” or “finalize”. To initialize the model using a config file, type:</p>
+<pre>
+initialize "path/to/config_file_template.txt"
+</pre>
+<p>Change <code class="docutils literal notranslate"><span class="pre">path/to/config_file_template.txt</span></code> to the actual path of the config file.</p>
+</div>
+</div>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Run the model with Octave</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Local device</p>
+<p>If you want to run the model for a small time period or tests purpose, you can use <a class="reference external" href="https://octave.org/">Octave</a>. Allmost all funcationalities of STEMMUS_SCOPE are compatible with Octave, but the execution time is longer than MATLAB. After Octave installation, launch octave and install the following Octave packages:</p>
+<pre>
+pkg install "https://downloads.sourceforge.net/project/octave/Octave%20Forge%20Packages/Individual%20Package%20Releases/io-2.6.4.tar.gz"
+pkg install "https://downloads.sourceforge.net/project/octave/Octave%20Forge%20Packages/Individual%20Package%20Releases/statistics-1.4.3.tar.gz"
+</pre>
+<p>Then, pass config file path to the variable CFG in the main script STEMMUS_SCOPE.m. Run the model in a terminal:</p>
+<pre>
+cd src/
+octave.bat --no-gui --interactive --silent --eval "STEMMUS_SCOPE"
+</pre>
+<p>On a Unix system, use octave instead of octave.bat.</p>
+<div class="dropdown warning admonition">
+<p class="admonition-title">Octave from source</p>
+<p>Note that Octave on many Linux distributions might be too old so we need to compile it ourselves. See <a class="reference external" href="https://wiki.octave.org/Building">https://wiki.octave.org/Building</a>. Here are build instructions for Ubuntu 22.04:</p>
+<pre>
+sudo apt update
+# install minimal deps, see https://wiki.octave.org/Octave_for_Debian_systems#The_right_way for all dependencies
+sudo apt install -yq wget build-essential gfortran liblapack-dev libblas-dev libpcre3-dev libreadline-dev libnetcdf-dev
+wget https://mirror.serverion.com/gnu/octave/octave-7.2.0.tar.gz  # or download from local mirror at https://ftpmirror.gnu.org/octave
+tar -zxf octave-7.2.0.tar.gz
+cd octave-7.2.0
+./configure --prefix=/opt/octave
+make -j 6
+sudo make install
+</pre>
+<p>Add <code class="docutils literal notranslate"><span class="pre">/opt/octave/bin</span></code> to PATH environment variable.</p>
+<pre>
+export PATH=$PATH:/opt/octave/bin
+</pre>
+<p>Launch Octave and install Octave dependencies with:</p>
+<pre>
+pkg install "https://downloads.sourceforge.net/project/octave/Octave%20Forge%20Packages/Individual%20Package%20Releases/io-2.6.4.tar.gz"
+pkg install "https://downloads.sourceforge.net/project/octave/Octave%20Forge%20Packages/Individual%20Package%20Releases/statistics-1.4.3.tar.gz"
+</pre>
+</div>
+</div>
+<div class="docutils">
+<div class="dropdown admonition">
+<p class="admonition-title">CRIB</p>
+<p>On CRIB, you can use <a class="reference external" href="https://octave.org/">Octave</a>. Allmost all funcationalities of STEMMUS_SCOPE are compatible with Octave, but the execution time is longer than MATLAB. After Octave installation, launch octave and install the following Octave packages:</p>
+<pre>
+pkg install "https://downloads.sourceforge.net/project/octave/Octave%20Forge%20Packages/Individual%20Package%20Releases/io-2.6.4.tar.gz"
+pkg install "https://downloads.sourceforge.net/project/octave/Octave%20Forge%20Packages/Individual%20Package%20Releases/statistics-1.4.3.tar.gz"
+</pre>
+<p>Then, pass config file path to the variable CFG in the main script STEMMUS_SCOPE.m. Run the model in a terminal:</p>
+<pre>
+octave.bat --no-gui --interactive --silent --eval "STEMMUS_SCOPE"
+</pre>
+</div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Snellius</p>
+<p>Since Octave is very slow, it is not recommended to run the model on Snellius using Octave. Use MATLAB Runtime instead.</p>
+</div>
+</div>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Run the model with Docker</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Local device</p>
+<p>If you have <a class="reference external" href="https://www.docker.com/">Docker</a> installed on your device, you can run the model using the docker image <code class="docutils literal notranslate"><span class="pre">ecoextreml/stemmus_scope</span></code> and <a class="reference external" href="https://bmi.csdms.io/en/stable/">BMI</a> interface. The docker image is available on <a class="reference external" href="https://github.com/EcoExtreML/STEMMUS_SCOPE/pkgs/container/stemmus_scope">EcoExtreML</a>. You can pull the latest image using the following command:</p>
+<pre>
+docker pull ghcr.io/ecoextreml/stemmus_scope:latest
+</pre>
+<p>Then, mount the directories and run the model in a terminal:</p>
+<pre>
+docker run -u $(id -u):$(id -g) -v /path_to_input_folder:/path_to_input_folder -v /path_to_output_folder:/path_to_output_folder -it ghcr.io/ecoextreml/stemmus_scope:latest
+</pre>
+<p>With <code class="docutils literal notranslate"><span class="pre">-it</span></code> option, you can enter the docker interactive mode. Now, BMI asks you to select one of the steps “initialize”, “update” or “finalize”. To initialize the model using a config file, type:</p>
+<pre>
+initialize "path/to/config_file_template.txt"
+</pre>
+<p>Make sure that the input and output directories are mounted correctly and <code class="docutils literal notranslate"><span class="pre">config_file_template.txt</span></code> is available in the input directory. Also, remove the container after running the model:</p>
+<pre>
+docker rm container_id
+</pre>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">CRIB</p>
+<p>If <a class="reference external" href="https://www.docker.com/">Docker</a> is installed on CRIB, follow the same instructions as for the Local device.</p>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Snellius</p>
+<p><a class="reference external" href="https://www.docker.com/">Docker</a> option is not available on Snellius. You need to use <a class="reference external" href="https://apptainer.org/docs/user/main/introduction.html">Apptainer</a>, see instructions <a class="reference external" href="https://servicedesk.surf.nl/wiki/spaces/WIKI/pages/30660251/Apptainer+formerly+Singularity">here</a>.</p>
+</div>
+</div>
+</section>
+<section id="example-workflow-of-running-the-model">
+<h2><span class="section-number">1.3.2. </span>Example workflow of running the model<a class="headerlink" href="#example-workflow-of-running-the-model" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Download the <a class="reference external" href="https://github.com/EcoExtreML/STEMMUS_SCOPE/releases">latest version of the model</a>.</p></li>
+<li><p>Download the example dataset from Zenodo <a class="reference external" href="https://zenodo.org/records/10566827">here</a> that includes the configuration file.</p></li>
+<li><p>Choose one of the options above to run the model.</p></li>
+</ol>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -410,6 +594,22 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-of-stemmus-scope">1.3.1. Workflow of STEMMUS_SCOPE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-workflow-of-running-the-model">1.3.2. Example workflow of running the model</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
